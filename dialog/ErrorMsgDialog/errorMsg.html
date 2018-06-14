@@ -1,0 +1,36 @@
+<style>
+  .modal-dialog {
+    max-height: 95% !important;
+    width: 50% !important;
+    overflow-x: auto;
+    margin: 10px !important;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    -ms-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+  
+  .modal-body {
+    max-height: 90% !important;
+    width: 95% !important;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+</style>
+<div class="modal-dialog" ng-controller="ErrorMessageDialogController as vm">
+  <div class="modal-content">
+    <div class="modal-header" style="color: #fff !important; background-color: #a94442 !important;">
+      <h4 class="LEAD">Error</h4>
+    </div>
+    <div class="modal-body">
+      <h4 class="LEAD">{{vm.errorMsg}}</h4>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-primary" ng-click="vm.okClose()" focusme="true">Ok</button>
+    </div>
+  </div>
+</div>

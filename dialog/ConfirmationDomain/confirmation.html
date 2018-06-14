@@ -1,0 +1,37 @@
+<style>
+  .modal-dialog {
+    max-height: 95% !important;
+    width: 60% !important;
+    overflow-x: auto;
+    margin: 10px !important;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    -webkit-transform: inherit !important;
+    -moz-transform: inherit !important;
+    -o-transform: inherit !important;
+    transform: inherit !important;
+  }
+  
+  .modal-body {
+    max-height: 90% !important;
+    width: 90% !important;
+    overflow-y: auto;
+  }
+
+</style>
+<div class="modal-dialog" ng-controller="ConfirmationDomainController as vm">
+  <div class="modal-content">
+    <div class="modal-header" style="color: #fff !important; background-color: #337ab7 !important;">
+      <h4 class="LEAD">Confirmation</h4>
+    </div>
+    <div class="modal-body">
+      <span class="h4" ng-if="!vm.isEmpty(vm.confirmationMsg)" ng-bind-html="vm.confirmationMsg"></span>
+      <span ng-if="vm.isEmpty(vm.confirmationMsg)"><h4>Are you sure you want to cancel this registration?</h4></span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-default" ng-click="vm.invalidConfirm()" ng-focus="isFocused=true" ng-blur="isFocused=false">No</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="vm.validConfirm()" focusme="true">Yes</button>
+    </div>
+  </div>
+</div>

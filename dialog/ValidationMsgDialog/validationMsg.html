@@ -1,0 +1,60 @@
+<style>
+  .modal-dialog {
+    max-height: 95% !important;
+    width: 50% !important;
+    overflow-x: auto;
+    margin: 10px !important;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -ms-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+  }
+  
+  .modal-body {
+    max-height: 100% !important;
+    width: 100% !important;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+  
+  .glyphicon-warning-sign:before {
+    zoom: 1.3;
+  }
+  
+  .text-warning {
+    color: #f0ad4e !important;
+  }
+
+</style>
+<div class="modal-dialog" ng-controller="ValidationMsgController as vm">
+  <div class="modal-content">
+    <div class="modal-header" style="color: #fff !important; background-color: #337ab7 !important;">
+      <h4 class="LEAD">Entity Uniqueness</h4>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <span ng-bind-html="vm.validationMsg.message" ng-if="vm.validationMsg.status == 'error'"></span>
+            <span ng-bind-html="vm.validationMsg.output.message" ng-if="vm.validationMsg.status !== 'error'"></span>
+            <div ng-if="vm.isRuleEmpty()" ng-repeat="msg in vm.validationMsg.output.msg"><span>{{msg.msg}}</span></div>
+            <div ng-if="vm.isEmpty(vm.validationMsg.output.message) && !vm.isRuleEmpty()" ng-repeat="msg in vm.validationMsg.output.msg"><span>{{msg.msg}}</span></div>
+            <div ng-if="vm.checkConceptStatus()"><span class="glyphicon glyphicon-warning-sign text-warning" ng-style="vm.validationMsg.output.conceptStatus == 'Discontinued' ? {'margin-top': '10px'} :{'margin-top': '5px'}"></span><b>&nbsp;&nbsp;ALERT:&nbsp;</b>{{vm.validationMsg.output.statusMessage}}</div>
+          </div>
+        </div>
+      </div>
+      <!-- end of cotainer -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-default" ng-click="vm.cancelValidation()" ng-init="$element.blur()">Cancel</button>
+      <button id="cont" type="button" ng-if="vm.willReceiveMoniker()" class="btn btn-sm btn-primary" ng-click="vm.continueValidation()" ng-focus="vm.willReceiveMoniker()" focusme="true">Continue</button>
+      <button type="button" ng-if="!vm.willReceiveMoniker() && !vm.curationEvent() && !vm.isRuleEmpty() && !vm.checkConceptStatus()" class="btn btn-sm btn-primary" ng-click="vm.registerLot()" ng-focus="!vm.willReceiveMoniker()">Register a New Lot</button>
+      <button type="button" ng-if="vm.validationMsg.output.conceptStatus == 'Discontinued'" class="btn btn-sm btn-primary" ng-click="vm.viewConcept()" ng-focus="!vm.willReceiveMoniker() && vm.validationMsg.output.conceptStatus == 'Discontinued'" focusme="true">View</button>
+      <button type="button" ng-if="vm.validationMsg.output.conceptStatus == 'Replaced'" class="btn btn-sm btn-default" ng-click="vm.viewConcept()">View {{vm.validationMsg.output.moniker}}</button>
+      <button type="button" ng-if="vm.validationMsg.output.conceptStatus == 'Replaced'" class="btn btn-sm btn-primary" ng-click="vm.viewConcept(vm.validationMsg.output.conceptStatus)" ng-focus="!vm.willReceiveMoniker() && vm.validationMsg.output.conceptStatus == 'Replaced'" focusme="true">View {{vm.validationMsg.output.replacedMoniker}}</button>
+    </div>
+  </div>
+</div>

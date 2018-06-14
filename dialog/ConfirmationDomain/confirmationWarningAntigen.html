@@ -1,0 +1,39 @@
+<style>
+  .modal-ra-dialog {
+    max-height: 70% !important;
+    width: 60% !important;
+    overflow-x: auto;
+    margin: 10px !important;
+    position: fixed;
+    top: 25%;
+    left: 20%;
+    -webkit-transform: inherit !important;
+    -moz-transform: inherit !important;
+    -o-transform: inherit !important;
+    transform: inherit !important;
+  }
+  
+  .modal-ra-body {
+    max-height: 90% !important;
+    width: 90% !important;
+    overflow-y: auto;
+    margin: 10px;
+  }
+
+</style>
+<div class="modal-ra-dialog" ng-controller="ConfirmationDomainController as vm">
+  <div class="modal-content">
+    <div class="modal-header" style="color: #fff !important; background-color: #f0ad4e !important;">
+      <h4 class="LEAD">Confirmation</h4>
+    </div>
+    <div class="modal-ra-body">
+      <h5 class="LEAD">{{vm.confirmationMsg}}</h5>
+      <br/>
+      <span><h4>Please include this information if it is known. Do you want to continue with adding Recognized Antigens?</h4></span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-default" ng-click="vm.invalidConfirm()" ng-focus="isFocused=true" ng-blur="isFocused=false">Cancel</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="vm.validConfirm()" focusme="true">Add</button>
+    </div>
+  </div>
+</div>

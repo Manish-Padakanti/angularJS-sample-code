@@ -1,0 +1,38 @@
+<style>
+  .modal-ra-dialog {
+    max-height: 70% !important;
+    width: 50% !important;
+    overflow-x: auto;
+    margin: 10px !important;
+    position: fixed;
+    top: 30%;
+    left: 25%;
+    -webkit-transform: inherit !important;
+    -moz-transform: inherit !important;
+    -o-transform: inherit !important;
+    transform: inherit !important;
+  }
+  
+  .modal-ra-body {
+    max-height: 90% !important;
+    width: 90% !important;
+    overflow-y: auto;
+    margin: 10px;
+  }
+
+</style>
+<div class="modal-ra-dialog" ng-controller="ConfirmationDomainController as vm">
+  <div class="modal-content">
+    <div class="modal-header" style="color: #fff !important; background-color: #f0ad4e !important;">
+      <h4 class="LEAD">Warning</h4>
+    </div>
+    <div class="modal-ra-body">
+      <h5 class="LEAD"><span ng-bind-html="vm.confirmationMsg"></span></h5>
+      <br/>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-default" ng-click="vm.invalidConfirm()">Cancel</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="vm.validConfirm()" focusme="true">OK</button>
+    </div>
+  </div>
+</div>
